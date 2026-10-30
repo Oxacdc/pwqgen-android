@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Store icon: same shapes as res/drawable/ic_launcher_*.xml. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="18 18 72 72">
+  <rect x="18" y="18" width="72" height="72" fill="#1B2A24"/>
+  <path fill="#4FB38A" fill-rule="evenodd" d="M42,36 a16,16 0 1,1 0,32 a16,16 0 1,1 0,-32 Z M42,46 a6,6 0 1,0 0,12 a6,6 0 1,0 0,-12 Z"/>
+  <path fill="#4FB38A" d="M56,48 L80,48 L80,62 L74,62 L74,56 L69,56 L69,60 L63,60 L63,56 L56,56 Z"/>
+</svg>

@@ -1,0 +1,1 @@
+Memorable random passphrases, generated like Openwall's pwqgen

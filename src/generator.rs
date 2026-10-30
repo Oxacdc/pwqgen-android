@@ -1,4 +1,7 @@
-//! Port of passwdqc_random() from passwdqc (https://github.com/openwall/passwdqc).
+//! Port of passwdqc_random() from passwdqc (https://github.com/openwall/passwdqc),
+//! written by Solar Designer, which powers the pwqgen program by Dmitry V. Levin
+//! and Solar Designer.  The word list is derived from Dianelos Georgoudis'
+//! public-domain MakePass list.  See NOTICE.
 //!
 //! The algorithm, word list and bit layout are identical to the C version, so
 //! the same 24 random bytes give the same passphrase.

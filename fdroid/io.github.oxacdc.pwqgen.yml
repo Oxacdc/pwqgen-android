@@ -1,0 +1,30 @@
+Categories:
+  - Password & 2FA
+License: 0BSD
+AuthorName: Oxacdc
+SourceCode: https://github.com/Oxacdc/pwqgen-android
+IssueTracker: https://github.com/Oxacdc/pwqgen-android/issues
+
+AutoName: pwqgen
+
+RepoType: git
+Repo: https://github.com/Oxacdc/pwqgen-android.git
+
+Builds:
+  - versionName: 0.1.0
+    versionCode: 1
+    commit: v0.1.0
+    sudo:
+      - apt-get update
+      - apt-get install -y rustup zip
+    output: build/pwqgen-unsigned.apk
+    build:
+      - rustup default 1.99.1
+      - rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android
+      - UNSIGNED=1 ANDROID_NDK=$$NDK$$ ./tools/build-apk.sh
+    ndk: 29.0.14206865
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 0.1.0
+CurrentVersionCode: 1

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- No permissions: the app never touches the network or storage. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="local.pwqgen">
+    package="io.github.oxacdc.pwqgen"
+    android:versionCode="1"
+    android:versionName="0.1.0">
+
+    <uses-sdk
+        android:minSdkVersion="26"
+        android:targetSdkVersion="34" />
 
     <application
         android:label="pwqgen"

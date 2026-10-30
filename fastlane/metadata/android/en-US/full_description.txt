@@ -1,0 +1,14 @@
+<p>pwqgen generates random passphrases that are easy to remember, such as <i>track2Clerk&amp;iran</i>, using the same algorithm and word list as <b>pwqgen</b> from Openwall's <a href="https://www.openwall.com/passwdqc/">passwdqc</a>.</p>
+
+<p>Each word is picked from a list of 4096 common English words; separators and capital letters add more randomness. Choose how strong the passphrase should be, from 24 to 136 bits of entropy (47 bits by default, like pwqgen).</p>
+
+<p><b>Credits</b>: passwdqc and its passphrase generator were written by Solar Designer (Openwall); the pwqgen program by Dmitry V. Levin and Solar Designer. The word list comes from Dianelos Georgoudis' public-domain MakePass list. This app is an unofficial port and is not affiliated with Openwall.</p>
+
+<p><b>Privacy and security</b></p>
+<ul>
+<li>No permissions: no network, no storage access.</li>
+<li>Randomness comes from the operating system's secure random number generator.</li>
+<li>Screenshots and the preview in the recent apps list are blocked.</li>
+<li>Copied passphrases are marked as sensitive, so Android 13+ hides them in the clipboard preview.</li>
+<li>Written in Rust; the generator is checked against vectors produced by the original C code.</li>
+</ul>

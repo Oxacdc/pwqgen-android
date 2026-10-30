@@ -15,7 +15,9 @@ const ACCENT: Color32 = Color32::from_rgb(0x4f, 0xb3, 0x8a);
 #[no_mangle]
 fn android_main(app: AndroidApp) {
     // No screenshots, screen recording, or thumbnail in the recent apps list.
-    app.set_window_flags(WindowManagerFlags::SECURE, WindowManagerFlags::empty());
+    if !cfg!(feature = "screenshots") {
+        app.set_window_flags(WindowManagerFlags::SECURE, WindowManagerFlags::empty());
+    }
 
     let options = eframe::NativeOptions {
         android_app: Some(app.clone()),
@@ -189,7 +191,17 @@ impl eframe::App for PwqgenApp {
         ui.with_layout(Layout::bottom_up(Align::Center), |ui| {
             ui.add_space(bottom + 12.0);
             ui.label(
-                RichText::new("Algorithme et liste de mots : passwdqc, Openwall")
+                RichText::new("Liste de mots : MakePass, Dianelos Georgoudis")
+                    .small()
+                    .weak(),
+            );
+            ui.label(
+                RichText::new("pwqgen : Dmitry V. Levin et Solar Designer")
+                    .small()
+                    .weak(),
+            );
+            ui.label(
+                RichText::new("Algorithme passwdqc : Solar Designer (Openwall)")
                     .small()
                     .weak(),
             );

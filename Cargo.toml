@@ -2,8 +2,12 @@
 name = "pwqgen-android"
 version = "0.1.0"
 edition = "2021"
-license = "BSD-1-Clause"
+license = "0BSD"
 publish = false
+
+[features]
+# Leaves out FLAG_SECURE so screenshots can be taken for store listings.
+screenshots = []
 
 [lib]
 name = "pwqgen"

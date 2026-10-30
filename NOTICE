@@ -1,0 +1,36 @@
+pwqgen for Android is based on passwdqc by Openwall:
+https://www.openwall.com/passwdqc/  https://github.com/openwall/passwdqc
+
+Credits:
+- Solar Designer (Openwall): author of passwdqc, including the
+  passwdqc_random() passphrase generator this app ports, and curator of
+  its word list.
+- Dmitry V. Levin: author of the pwqgen command-line program (2008-2009),
+  later updated by Solar Designer (2016, 2021).
+- Dianelos Georgoudis: author of the MakePass word list (1997, public
+  domain) that passwdqc's word list comes from.
+
+Files derived from passwdqc:
+- src/generator.rs is a Rust port of passwdqc_random.c
+  (Copyright (c) 2000-2002,2005,2008,2010,2013,2016,2021 by Solar Designer).
+- src/wordset_4k.txt holds the first 4096 words of wordset_4k.c, which is in
+  the public domain (word list from MakePass by Dianelos Georgoudis).
+- tests/gen_vectors.c builds passwdqc's own C code to produce the test
+  vectors in tests/vectors.txt.
+
+passwdqc_random.c is distributed under the following terms:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted.
+
+  THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+  SUCH DAMAGE.

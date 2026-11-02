@@ -1,8 +1,8 @@
 <p>pwqgen génère des phrases de passe aléatoires faciles à retenir, comme <i>track2Clerk&amp;iran</i>, avec le même algorithme et la même liste de mots que <b>pwqgen</b> de <a href="https://www.openwall.com/passwdqc/">passwdqc</a> (Openwall).</p>
 
-<p>Chaque mot est tiré d'une liste de 4096 mots anglais courants ; les séparateurs et les majuscules ajoutent de l'aléa. Vous choisissez la robustesse, de 24 à 136 bits d'entropie (47 bits par défaut, comme pwqgen).</p>
+<p>Chaque mot est tiré d'une liste de 4096 mots courants, en anglais (la liste de pwqgen), français, espagnol, allemand, russe (en lettres latines) ou latin ; les séparateurs et les majuscules ajoutent de l'aléa. Les six listes suivent les mêmes règles (4096 mots de 3 à 6 lettres, sans accents), donc l'entropie est identique quelle que soit la langue. Vous choisissez la robustesse, de 24 à 136 bits d'entropie (47 bits par défaut, comme pwqgen).</p>
 
-<p><b>Crédits</b> : passwdqc et son générateur de phrases de passe ont été écrits par Solar Designer (Openwall) ; le programme pwqgen par Dmitry V. Levin et Solar Designer. La liste de mots provient de la liste MakePass de Dianelos Georgoudis, dans le domaine public. Cette appli est un portage non officiel, sans lien avec Openwall.</p>
+<p><b>Crédits</b> : passwdqc et son générateur de phrases de passe ont été écrits par Solar Designer (Openwall) ; le programme pwqgen par Dmitry V. Levin et Solar Designer. La liste anglaise provient de la liste MakePass de Dianelos Georgoudis, dans le domaine public. Les listes française, espagnole, allemande et russe ont été établies à partir des fréquences de mots des phrases Mozilla Common Voice (CC0), de livres du Project Gutenberg et de prose russe de Wikisource (domaine public) ; la liste latine à partir du dictionnaire WORDS de William Whitaker. Cette appli est un portage non officiel, sans lien avec Openwall.</p>
 
 <p><b>Confidentialité et sécurité</b></p>
 <ul>

@@ -1,8 +1,8 @@
 <p>pwqgen generates random passphrases that are easy to remember, such as <i>track2Clerk&amp;iran</i>, using the same algorithm and word list as <b>pwqgen</b> from Openwall's <a href="https://www.openwall.com/passwdqc/">passwdqc</a>.</p>
 
-<p>Each word is picked from a list of 4096 common English words; separators and capital letters add more randomness. Choose how strong the passphrase should be, from 24 to 136 bits of entropy (47 bits by default, like pwqgen).</p>
+<p>Each word is picked from a list of 4096 common words in English (pwqgen's list), French, Spanish, German, Russian (in Latin letters) or Latin; separators and capital letters add more randomness. All six lists follow the same rules (4096 words of 3 to 6 letters, no accents), so the entropy is the same whatever the language. Choose how strong the passphrase should be, from 24 to 136 bits of entropy (47 bits by default, like pwqgen).</p>
 
-<p><b>Credits</b>: passwdqc and its passphrase generator were written by Solar Designer (Openwall); the pwqgen program by Dmitry V. Levin and Solar Designer. The word list comes from Dianelos Georgoudis' public-domain MakePass list. This app is an unofficial port and is not affiliated with Openwall.</p>
+<p><b>Credits</b>: passwdqc and its passphrase generator were written by Solar Designer (Openwall); the pwqgen program by Dmitry V. Levin and Solar Designer. The English list comes from Dianelos Georgoudis' public-domain MakePass list. The French, Spanish, German and Russian lists were built from word frequencies in Mozilla Common Voice sentences (CC0), Project Gutenberg books and Russian Wikisource prose (public domain); the Latin list from William Whitaker's WORDS dictionary. This app is an unofficial port and is not affiliated with Openwall.</p>
 
 <p><b>Privacy and security</b></p>
 <ul>

@@ -1,5 +1,6 @@
 //! Android entry point (NativeActivity) and egui interface.
 
+use std::path::PathBuf;
 use std::time::{Duration, Instant};
 
 use eframe::egui::{self, Align, Color32, FontId, Layout, RichText, TextStyle};
@@ -8,7 +9,7 @@ use jni::JavaVM;
 use winit::platform::android::activity::{AndroidApp, WindowManagerFlags};
 use zeroize::Zeroize;
 
-use crate::generator::{self, BITS_DEFAULT, BITS_MAX, BITS_MIN};
+use crate::generator::{self, Language, BITS_DEFAULT, BITS_MAX, BITS_MIN};
 
 const ACCENT: Color32 = Color32::from_rgb(0x4f, 0xb3, 0x8a);
 
@@ -32,6 +33,7 @@ fn android_main(app: AndroidApp) {
 
 struct PwqgenApp {
     android: AndroidApp,
+    lang: Language,
     bits: i32,
     passphrase: String,
     status: Option<(String, Instant)>,
@@ -54,8 +56,10 @@ impl PwqgenApp {
             style.spacing.slider_width = 220.0;
         });
 
+        let lang = load_language(&android).unwrap_or(Language::English);
         let mut app = Self {
             android,
+            lang,
             bits: BITS_DEFAULT,
             passphrase: String::new(),
             status: None,
@@ -66,7 +70,7 @@ impl PwqgenApp {
 
     fn regenerate(&mut self) {
         self.passphrase.zeroize();
-        match generator::generate(self.bits) {
+        match generator::generate(self.lang, self.bits) {
             Some(p) => self.passphrase = p,
             None => self.set_status("Échec de la génération"),
         }
@@ -111,7 +115,21 @@ impl eframe::App for PwqgenApp {
 
             ui.heading(RichText::new("pwqgen").color(ACCENT).strong());
             ui.label(RichText::new("Phrases de passe passwdqc").weak());
-            ui.add_space(32.0);
+            ui.add_space(20.0);
+
+            ui.horizontal_wrapped(|ui| {
+                ui.spacing_mut().item_spacing.x = 8.0;
+                for lang in Language::ALL {
+                    if ui.selectable_label(self.lang == lang, language_name(lang)).clicked()
+                        && self.lang != lang
+                    {
+                        self.lang = lang;
+                        save_language(&self.android, lang);
+                        self.regenerate();
+                    }
+                }
+            });
+            ui.add_space(20.0);
 
             egui::Frame::group(ui.style())
                 .inner_margin(20.0)
@@ -191,7 +209,7 @@ impl eframe::App for PwqgenApp {
         ui.with_layout(Layout::bottom_up(Align::Center), |ui| {
             ui.add_space(bottom + 12.0);
             ui.label(
-                RichText::new("Liste de mots : MakePass, Dianelos Georgoudis")
+                RichText::new(word_list_credit(self.lang))
                     .small()
                     .weak(),
             );
@@ -206,6 +224,44 @@ impl eframe::App for PwqgenApp {
                     .weak(),
             );
         });
+    }
+}
+
+fn language_name(lang: Language) -> &'static str {
+    match lang {
+        Language::English => "English",
+        Language::French => "Français",
+        Language::Spanish => "Español",
+        Language::German => "Deutsch",
+        Language::Russian => "Русский",
+        Language::Latin => "Latina",
+    }
+}
+
+fn word_list_credit(lang: Language) -> &'static str {
+    match lang {
+        Language::English => "Liste de mots : MakePass, Dianelos Georgoudis",
+        Language::French | Language::Spanish | Language::German => {
+            "Liste de mots : Common Voice (CC0) et Project Gutenberg"
+        }
+        Language::Russian => "Liste de mots : Common Voice (CC0) et Wikisource (domaine public)",
+        Language::Latin => "Liste de mots : WORDS, William Whitaker",
+    }
+}
+
+/// File in the app's private storage holding the chosen language code.
+fn language_file(app: &AndroidApp) -> Option<PathBuf> {
+    Some(app.internal_data_path()?.join("language"))
+}
+
+fn load_language(app: &AndroidApp) -> Option<Language> {
+    let code = std::fs::read_to_string(language_file(app)?).ok()?;
+    Language::from_code(code.trim())
+}
+
+fn save_language(app: &AndroidApp, lang: Language) {
+    if let Some(path) = language_file(app) {
+        let _ = std::fs::write(path, lang.code());
     }
 }
 

@@ -24,7 +24,20 @@ Builds:
       - UNSIGNED=1 ANDROID_NDK=$$NDK$$ ./tools/build-apk.sh
     ndk: 29.0.14206865
 
+  - versionName: 0.2.0
+    versionCode: 2
+    commit: v0.2.0
+    sudo:
+      - apt-get update
+      - apt-get install -y rustup zip
+    output: build/pwqgen-unsigned.apk
+    build:
+      - rustup default 1.99.1
+      - rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android
+      - UNSIGNED=1 ANDROID_NDK=$$NDK$$ ./tools/build-apk.sh
+    ndk: 29.0.14206865
+
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
-CurrentVersion: 0.1.0
-CurrentVersionCode: 1
+CurrentVersion: 0.2.0
+CurrentVersionCode: 2
